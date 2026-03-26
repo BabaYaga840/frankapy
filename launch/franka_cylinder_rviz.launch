@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
 
-  <param name="robot_description" command="$(find xacro)/xacro --inorder '/home/iam-lab/Documents/frankapy/urdf/panda_arm_hand.urdf.xacro' " />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '/home/iam-lab/Documents/frankapy/urdf/panda_arm_cylinder.urdf.xacro' " />
   <param name="use_gui" value="True" />
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d /home/iam-lab/Documents/frankapy/rviz/franka_basic_config.rviz" required="true" />        
+
+
 
 </launch>

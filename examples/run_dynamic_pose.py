@@ -13,8 +13,10 @@ import rospy
 
 
 if __name__ == "__main__":
+    print(f" ----------- start of script --------------")
     fa = FrankaArm()
     fa.reset_joints()
+    print(f"rset joints")
 
     rospy.loginfo('Generating Trajectory')
     p0 = fa.get_pose()
@@ -47,6 +49,9 @@ if __name__ == "__main__":
         cartesian_impedances=FC.DEFAULT_TRANSLATIONAL_STIFFNESSES[:2] + [z_stiffness_traj[1]] + FC.DEFAULT_ROTATIONAL_STIFFNESSES
     )
     init_time = rospy.Time.now().to_time()
+
+    print(f" ----------- end of script --------------")
+
     for i in range(2, len(ts)):
         timestamp = rospy.Time.now().to_time() - init_time
         traj_gen_proto_msg = PosePositionSensorMessage(

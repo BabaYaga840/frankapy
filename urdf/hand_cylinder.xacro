@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="hand_cylinder">
+  <xacro:macro name="hand_cylinder" params="connected_to:='' ns:='' rpy:='0 0 0' xyz:='0 0 0' ">
+    <!-- Conditionally create a joint if the hand is connected to something -->
+    <xacro:unless value="${connected_to == ''}">
+      <joint name="${ns}_hand_joint" type="fixed">
+        <parent link="${connected_to}"/>
+        <child link="${ns}_hand"/>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </joint>
+    </xacro:unless>
+    <!-- Define the hand link as a cylinder -->
+    <link name="${ns}_hand">
+      <visual>
+        <geometry>
+          <cylinder radius="0.06" length="0.31"/>
+        </geometry>
+        <material name="gray">
+          <color rgba="0.5 0.5 0.5 0.5"/>
+        </material>
+        <!-- Apply the z-offset in the visual component if the hand is not connected -->
+        <origin xyz="0 0 0.155" rpy="0 0 0" unless="${connected_to == ''}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <cylinder radius="0.06" length="0.31"/>
+        </geometry>
+        <!-- Apply the z-offset in the collision component if the hand is not connected -->
+        <origin xyz="0 0 0.155" rpy="0 0 0" unless="${connected_to == ''}"/>
+      </collision>
+    </link>
+  </xacro:macro>
+</robot>

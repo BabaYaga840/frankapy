@@ -34,6 +34,7 @@ class FrankaArmStateClient:
                 'joints': np.zeros(7),
                 'joints_desired': np.zeros(7),
                 'joint_velocities': np.zeros(7),
+                'joint_velocities_desired': np.zeros(7),
                 'gripper_width': 0,
                 'gripper_is_grasped': False,
                 'ee_force_torque': np.zeros(6)
@@ -49,6 +50,7 @@ class FrankaArmStateClient:
             'joints': np.array(ros_data.q),
             'joints_desired': np.array(ros_data.q_d),
             'joint_velocities': np.array(ros_data.dq),
+            'joint_velocities_desired': np.array(ros_data.dq_d),
             'gripper_width': ros_data.gripper_width,
             'gripper_is_grasped': ros_data.gripper_is_grasped,
             'ee_force_torque': np.array(ros_data.O_F_ext_hat_K)

@@ -2024,7 +2024,8 @@ class FrankaArm:
 
         for box in boxes:
             if self.check_box_collision(box, joints=joints):
-                return True
+                # return True  #HACKED OUT TO PREVENT VIRTUAL WALL
+                return False
 
         return False
 
